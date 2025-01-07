@@ -1,5 +1,6 @@
 import { Optional } from 'sequelize';
 
+// Trade
 export enum Outcome {
     YES = 'Yes',
     NO = 'No',
@@ -10,7 +11,6 @@ export enum TradeType {
     SELL = 'Sell',
 }
 
-// OpinionTrade
 export interface ITradeAttributes {
     id: number;
     userId: number;
@@ -23,3 +23,24 @@ export interface ITradeAttributes {
 }
 
 export interface ITradeCreationAttributes extends Optional<ITradeAttributes, 'id'> {}
+
+
+// Event
+export enum EventStatus {
+    OPEN = 'Open',
+    CLOSED = 'Closed',
+    RESOLVED = 'Resolved',
+}
+
+export interface IEventAttributes {
+    id: number;
+    name: string; 
+    description: string; 
+    startDate: Date;
+    endDate: Date; 
+    status: EventStatus; 
+    liveYesCount: number;
+    liveNoCount: number;
+}
+
+export interface IEventCreationAttributes extends Optional<IEventAttributes, 'id'> {}
