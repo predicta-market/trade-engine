@@ -1,14 +1,25 @@
 import { Optional } from 'sequelize';
 
-
-// User
-export interface IUserAttributes{
-    id: number;
-    username: string;
-    phoneNumber: string;
-    email: string;
-    password: string;
-    pin: string;
+export enum Outcome {
+    YES = 'Yes',
+    NO = 'No',
 }
 
-export interface IUserCreationAttributes extends Optional<IUserAttributes, 'id'> {}
+export enum TradeType {
+    BUY = 'Buy',
+    SELL = 'Sell',
+}
+
+// OpinionTrade
+export interface ITradeAttributes {
+    id: number;
+    userId: number;
+    marketId: number; 
+    outcome: Outcome; 
+    quantity: number;
+    price: number;
+    tradeType: TradeType; 
+    timestamp: Date; 
+}
+
+export interface ITradeCreationAttributes extends Optional<ITradeAttributes, 'id'> {}
