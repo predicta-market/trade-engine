@@ -8,13 +8,7 @@ class AmmTradeExecutor extends BaseTradeExecutor {
         super();
         this.liquidityFactor = liquidityFactor;
     }
-    
-    async getEventData(eventId:number){
-        return await this.priceManager.getEventFromRedis(eventId.toString());
-    }
-    async updateEventData(eventData:{}){
-        await this.priceManager.updateEventInRedis(eventData);
-    }
+
     async executeTrade(order: IOrderAttributes): Promise<any>{
 
         const eventData = await this.getEventData(order.eventId);
@@ -77,5 +71,4 @@ class AmmTradeExecutor extends BaseTradeExecutor {
     }
 }
 
-
-export default AmmTradeExecutor;
+export  {AmmTradeExecutor};
