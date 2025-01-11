@@ -25,7 +25,7 @@ class AmmTradeExecutor extends BaseTradeExecutor {
             liquidityYES: newLiquidityYES,
             liquidityNO: newLiquidityNO,
             priceYES: newPriceYES,
-            priceNO: newPriceNO
+            priceNO: newPriceNO,
         });
         
         return {
