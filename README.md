@@ -1,1 +1,5 @@
-# Template
+- [ ] Automated Market Maker Trade execution(buy only)
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
