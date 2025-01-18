@@ -1,4 +1,4 @@
-import PriceManager from '../price-manager';
+import {Outcome, PriceManager,recordPriceChange} from '../../data';
 
 abstract class BaseTradeExecutor {
   protected priceManager: PriceManager;
@@ -12,12 +12,11 @@ abstract class BaseTradeExecutor {
   protected async getEventData(eventId:number){
     return await this.priceManager.getEventFromRedis(eventId.toString());
   }
-  protected async updateEventData(eventData:{}){
+  
+  protected async updateEventData(eventData:any){
       await this.priceManager.updateEventInRedis(eventData);
-  }
-
-  protected async logAndUpdatePrice(fullfilledTrade: any): Promise<void>{
-    await this.priceManager.updateEventInRedis(fullfilledTrade); 
+      await recordPriceChange(eventData.eventId,Outcome.YES,eventData.priceYES);
+      await recordPriceChange(eventData.eventId,Outcome.NO,eventData.priceNO);
   }
 }
 
