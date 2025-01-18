@@ -1,6 +1,6 @@
-import express, { Express, Request, Response, NextFunction } from 'express';
-import {StatusCodes} from 'http-status-codes';
+import express, { Express} from 'express';
 import {config} from './config';
+import router from './route';
 
 class Server{
     private static app: Express;
@@ -22,6 +22,7 @@ class Server{
     private static configureMiddlewares(): void{
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: false }));
+        this.app.use('/api',router);
     }
 
     // Start the server
