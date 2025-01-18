@@ -20,6 +20,8 @@ const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS || '10', 10);
 const ACCESS_KEY = (process.env.ACCESS_KEY === undefined) ? 'snapdb_dev' : process.env.ACCESS_KEY;
 const REFRESH_KEY = (process.env.REFRESH_KEY === undefined) ? 'snapdb_dev' : process.env.REFRESH_KEY;
 const ACCESS_TOKEN_EXPIRY = (process.env.ACCESS_TOKEN_EXPIRY === undefined) ? '1h' : process.env.ACCESS_TOKEN_EXPIRY; // DEFAULT: 1 hour
+const TIME_SERIES_DATABASE_URL = (process.env.TIME_SERIES_DATABASE_URL === undefined) ? 'mongodb://localhost:27017' : process.env.TIME_SERIES_DATABASE_URL;
+const TIME_SERIES_DATABASE_NAME = (process.env.TIME_SERIES_DATABASE_NAME === undefined) ? 'event_price' : process.env.TIME_SERIES_DATABASE_NAME;
 
 export const config = Object.freeze({
     server:{
@@ -51,5 +53,9 @@ export const config = Object.freeze({
     redis:{
         url:REDIS_URI,
         ttl:REDIS_DEFAULT_TTL
+    },
+    tsdb:{
+        url:TIME_SERIES_DATABASE_URL,
+        dbName:TIME_SERIES_DATABASE_NAME
     }
 });
