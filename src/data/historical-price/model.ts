@@ -1,8 +1,8 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { Outcome } from '../core/types';
+import { Outcome } from '../core/model/types';
 
 interface IPriceRecord extends Document {
-    eventId: string;
+    eventId: number;
     outcome: Outcome;
     latestPrice: number;
     timestamp: Date;
@@ -10,7 +10,7 @@ interface IPriceRecord extends Document {
 
 const PriceRecordSchema = new Schema<IPriceRecord>({
     eventId: { 
-        type: String, 
+        type: Number, 
         required: true, 
         index: true 
     },
@@ -34,9 +34,8 @@ const PriceRecordSchema = new Schema<IPriceRecord>({
     }
 );
 
-// compound index for querying time-series data efficiently
 PriceRecordSchema.index({ eventId: 1, outcome: 1, timestamp: -1 });
 
 const PriceRecord = mongoose.model<IPriceRecord>('PriceRecord', PriceRecordSchema);
 
-export default PriceRecord;
+export {PriceRecord,IPriceRecord};
